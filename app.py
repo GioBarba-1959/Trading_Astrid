@@ -28,11 +28,14 @@ exchange.load_markets()
 
 def orderBuy(quantity, symbol, order_price):
     try:
-        order = client.order_limit_buy(
+        #order = client.order_limit_buy(
+        #    symbol=symbol,
+        #    quantity=quantity,
+        #    price=order_price)
+        order=client.order_market_buy(
             symbol=symbol,
-            quantity=quantity,
-            price=order_price)
-
+            quantity=quantity
+        )
         print(order)
         response=True
     except Exception as e:
@@ -42,18 +45,20 @@ def orderBuy(quantity, symbol, order_price):
 
 def orderSell(quantity, symbol, order_price):
     try:
-        order = client.order_limit_sell(
+        #order = client.order_limit_sell(
+        #    symbol=symbol,
+        #    quantity=quantity,
+        #    price=order_price)
+        order=client.order_market_sell(
             symbol=symbol,
-            quantity=quantity,
-            price=order_price)
-
+            quantity=quantity
+        )
         print(order)
         response=True
     except Exception as e:
         print("An exception occured - {}".format(e))
         return False
     return response  
-
 @app.route('/')
 def welcome():
     return "<h1>Questo è il trading bot di ASTRID</h1>"
